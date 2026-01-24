@@ -1,4 +1,4 @@
-package Entities;
+package Models.Entities;
 
 import java.util.List;
 import java.util.Map;
@@ -11,7 +11,7 @@ public abstract class BaseEntity implements Entity {
 
     protected Map<String, List<String>> errors;
 
-    public BaseEntity() {
+    protected BaseEntity() {
         this.id = UUID.randomUUID();
     }
 
