@@ -1,4 +1,4 @@
-package repository;
+package storage.repository;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -14,8 +14,12 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 import java.util.stream.Collectors;
 import models.entities.Client;
+import storage.contracts.ClientRepository;
+import storage.util.LocalDateTimeAdapter;
+import storage.util.UUIDAdapter;
 
 public class JsonClientRepository implements ClientRepository {
 
@@ -25,7 +29,11 @@ public class JsonClientRepository implements ClientRepository {
 
     public JsonClientRepository(String filePath) {
         this.filePath = filePath;
-        this.gson = new GsonBuilder().setPrettyPrinting().create();
+        this.gson = new GsonBuilder().setPrettyPrinting()
+              .registerTypeAdapter(LocalDateTime.class
+                    , new LocalDateTimeAdapter())
+              .registerTypeAdapter(UUID.class,
+                    new UUIDAdapter()).create();
         ensureFileExists();
     }
 
@@ -108,14 +116,14 @@ public class JsonClientRepository implements ClientRepository {
     }
 
     @Override
-    public void delete(String id) {
+    public void delete(UUID id) {
         List<Client> clients = readFromFile();
         clients.removeIf(client -> client.getId().equals(id));
         writeToFile(clients);
     }
 
     @Override
-    public Optional<Client> findById(String id) {
+    public Optional<Client> findById(UUID id) {
         return readFromFile().stream().filter(client -> client.getId()
               .equals(id)).findFirst();
     }

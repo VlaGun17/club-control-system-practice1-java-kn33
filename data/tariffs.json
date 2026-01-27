@@ -1,0 +1,18 @@
+[
+  {
+    "name": "Нічний",
+    "pricePerHour": 40,
+    "startHour": "22:00:00",
+    "endHour": "08:00:00",
+    "isNightTariff": true,
+    "id": "ab007ed0-6815-43ef-9e25-3c291fda53e0"
+  },
+  {
+    "name": "Денний",
+    "pricePerHour": 75,
+    "startHour": "08:00:00",
+    "endHour": "22:00:00",
+    "isNightTariff": false,
+    "id": "f398f9b4-214c-4bb2-8ce7-62a3ec9cbf0e"
+  }
+]

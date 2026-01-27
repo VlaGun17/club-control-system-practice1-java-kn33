@@ -1,4 +1,4 @@
-package Models.Entities;
+package models.util;
 
 import java.util.UUID;
 

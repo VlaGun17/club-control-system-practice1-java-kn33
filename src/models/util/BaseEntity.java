@@ -1,4 +1,4 @@
-package Models.Entities;
+package models.util;
 
 import java.util.List;
 import java.util.Map;
@@ -7,12 +7,16 @@ import java.util.UUID;
 
 public abstract class BaseEntity implements Entity {
 
-    private final UUID id;
+    protected final UUID id;
 
     protected Map<String, List<String>> errors;
 
     protected BaseEntity() {
         this.id = UUID.randomUUID();
+    }
+
+    protected BaseEntity(UUID id) {
+        this.id = id;
     }
 
     @Override

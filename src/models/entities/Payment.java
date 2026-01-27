@@ -1,8 +1,10 @@
-package Entities;
+package models.entities;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.UUID;
+import models.enums.PaymentType;
+import models.util.BaseEntity;
 
 public class Payment extends BaseEntity {
 
@@ -19,10 +21,27 @@ public class Payment extends BaseEntity {
         this.paymentType = paymentType;
     }
 
+    public UUID getSessionId() {
+        return sessionId;
+    }
+
+    public BigDecimal getAmount() {
+        return amount;
+    }
+
+    public LocalDateTime getPaymentTime() {
+        return paymentTime;
+    }
+
+    public PaymentType getPaymentType() {
+        return paymentType;
+    }
+
     @Override
     public String toString() {
         return "Payment{" +
-              "sessionId=" + sessionId +
+              "id=" + getId() +
+              ", sessionId=" + sessionId +
               ", amount=" + amount +
               ", paymentTime=" + paymentTime +
               ", paymentType=" + paymentType +

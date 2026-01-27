@@ -1,4 +1,4 @@
-package Entities;
+package models.enums;
 
 public enum ComputerType {
     STANDART("Стандарт"),

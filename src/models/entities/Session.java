@@ -1,8 +1,9 @@
-package Entities;
+package models.entities;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.UUID;
+import models.util.BaseEntity;
 
 public class Session extends BaseEntity {
 
@@ -11,7 +12,7 @@ public class Session extends BaseEntity {
     private final UUID tariffId;
     private final LocalDateTime startTime;
     private final BigDecimal totalCost;
-    private LocalDateTime endTime;
+    private final LocalDateTime endTime;
 
     public Session(UUID clientId, UUID computerId, UUID tariffId) {
         super();
@@ -20,12 +21,49 @@ public class Session extends BaseEntity {
         this.tariffId = tariffId;
         this.startTime = LocalDateTime.now();
         this.totalCost = BigDecimal.ZERO;
+        this.endTime = null;
+    }
+
+    public Session(UUID sessionId, UUID clientId, UUID computerId, UUID tariffId,
+          LocalDateTime startTime, LocalDateTime endTime, BigDecimal totalCost) {
+        super(sessionId);
+        this.clientId = clientId;
+        this.computerId = computerId;
+        this.tariffId = tariffId;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.totalCost = totalCost;
+    }
+
+    public UUID getClientId() {
+        return clientId;
+    }
+
+    public UUID getComputerId() {
+        return computerId;
+    }
+
+    public UUID getTariffId() {
+        return tariffId;
+    }
+
+    public LocalDateTime getStartTime() {
+        return startTime;
+    }
+
+    public BigDecimal getTotalCost() {
+        return totalCost;
+    }
+
+    public LocalDateTime getEndTime() {
+        return endTime;
     }
 
     @Override
     public String toString() {
         return "Session{" +
-              "clientId=" + clientId +
+              "id=" + getId() +
+              ", clientId=" + clientId +
               ", computerId=" + computerId +
               ", tariffId=" + tariffId +
               ", startTime=" + startTime +

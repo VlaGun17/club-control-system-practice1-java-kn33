@@ -1,10 +1,9 @@
-package repository;
+package storage.contracts;
 
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import models.entities.Client;
-import repository.util.Repository;
 
 public interface ClientRepository extends Repository<Client> {
 

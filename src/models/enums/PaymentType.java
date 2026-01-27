@@ -1,4 +1,4 @@
-package Entities;
+package models.enums;
 
 public enum PaymentType {
     BY_CARD("Карткою"),

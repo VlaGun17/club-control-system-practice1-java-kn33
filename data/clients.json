@@ -1,0 +1,65 @@
+[
+  {
+    "nickname": "Ivan_Pro9",
+    "email": "ivan.p@example.com",
+    "registrationDate": "2026-01-23T11:56:42.0908887",
+    "discountPercent": 75,
+    "visitCount": 12,
+    "balance": 10000.50,
+    "id": "ca1b5f68-67cb-40e9-90d3-ea430971fa7d"
+  },
+  {
+    "nickname": "Lowkick",
+    "email": "ivaasdada@example.com",
+    "registrationDate": "2026-01-24T17:51:33.1462253",
+    "discountPercent": 5.0,
+    "visitCount": 12,
+    "balance": 1500.50,
+    "id": "15d5e3c8-50ac-41d0-ba59-a7d1a8a32e03"
+  },
+  {
+    "nickname": "Vlad",
+    "email": "vlasiadia@example.com",
+    "registrationDate": "2026-01-24T17:51:33.1892245",
+    "discountPercent": 5.0,
+    "visitCount": 12,
+    "balance": 1500.50,
+    "id": "7d68a8da-7232-4853-a22f-881012fa89ef"
+  },
+  {
+    "nickname": "Koolod",
+    "email": "vanyapro2004@gmail.com",
+    "registrationDate": "2026-01-25T17:53:28.5890167",
+    "discountPercent": 0,
+    "visitCount": 0,
+    "balance": 1000,
+    "id": "7b303a5b-2f61-4cc4-91b8-9c0c05340287"
+  },
+  {
+    "nickname": "kookold",
+    "email": "gmailsada@gmail.com",
+    "registrationDate": "2026-01-25T19:59:36.3068067",
+    "discountPercent": 0,
+    "visitCount": 0,
+    "balance": 0,
+    "id": "53202763-c7d5-440c-a955-318ecef5d099"
+  },
+  {
+    "nickname": "Vladislavchik",
+    "email": "asdadsadad@gmail.com",
+    "registrationDate": "2026-01-27T23:14:10.8992224",
+    "discountPercent": 0,
+    "visitCount": 0,
+    "balance": 0,
+    "id": "4adcaafa-9212-4235-877c-b557cb6c0dd5"
+  },
+  {
+    "nickname": "Dzuhzhun",
+    "email": "asdadasfaf@gmail.com",
+    "registrationDate": "2026-01-27T23:23:32.795637",
+    "discountPercent": 0,
+    "visitCount": 0,
+    "balance": 0,
+    "id": "ead42c5a-730e-4e67-9f54-88c694a92cc7"
+  }
+]

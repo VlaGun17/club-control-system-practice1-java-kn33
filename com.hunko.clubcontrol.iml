@@ -7,5 +7,29 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="datafaker-2.5.3" level="project" />
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/libs/datafaker-2.5.3.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="library" name="gson-2.13.2" level="project" />
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/libs/gson-2.13.2.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="library" name="jakarta.mail-api-2.1.5" level="project" />
+    <orderEntry type="library" name="angus-mail-2.0.5" level="project" />
+    <orderEntry type="library" name="angus-activation-2.0.3" level="project" />
+    <orderEntry type="library" name="jakarta.activation-api-2.1.4" level="project" />
   </component>
 </module>

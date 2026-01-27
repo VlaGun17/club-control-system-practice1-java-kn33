@@ -1,7 +1,8 @@
-package repository.util;
+package storage.contracts;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 public interface Repository<T> {
 
@@ -9,9 +10,9 @@ public interface Repository<T> {
 
     T update(T entity);
 
-    void delete(String id);
+    void delete(UUID id);
 
-    Optional<T> findById(String id);
+    Optional<T> findById(UUID id);
 
     List<T> findAll();
 }
