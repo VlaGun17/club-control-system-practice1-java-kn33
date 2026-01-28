@@ -13,6 +13,7 @@ public class Session extends BaseEntity {
     private final LocalDateTime startTime;
     private final BigDecimal totalCost;
     private final LocalDateTime endTime;
+    private final boolean isActive;
 
     public Session(UUID clientId, UUID computerId, UUID tariffId) {
         super();
@@ -22,10 +23,11 @@ public class Session extends BaseEntity {
         this.startTime = LocalDateTime.now();
         this.totalCost = BigDecimal.ZERO;
         this.endTime = null;
+        this.isActive = true;
     }
 
     public Session(UUID sessionId, UUID clientId, UUID computerId, UUID tariffId,
-          LocalDateTime startTime, LocalDateTime endTime, BigDecimal totalCost) {
+          LocalDateTime startTime, LocalDateTime endTime, BigDecimal totalCost, boolean isActive) {
         super(sessionId);
         this.clientId = clientId;
         this.computerId = computerId;
@@ -33,6 +35,7 @@ public class Session extends BaseEntity {
         this.startTime = startTime;
         this.endTime = endTime;
         this.totalCost = totalCost;
+        this.isActive = isActive;
     }
 
     public UUID getClientId() {
@@ -57,6 +60,10 @@ public class Session extends BaseEntity {
 
     public LocalDateTime getEndTime() {
         return endTime;
+    }
+
+    public boolean isActive() {
+        return isActive;
     }
 
     @Override

@@ -3,18 +3,18 @@
     "nickname": "Ivan_Pro9",
     "email": "ivan.p@example.com",
     "registrationDate": "2026-01-23T11:56:42.0908887",
-    "discountPercent": 75,
-    "visitCount": 12,
-    "balance": 10000.50,
+    "discountPercent": 5,
+    "visitCount": 13,
+    "balance": 9973.10,
     "id": "ca1b5f68-67cb-40e9-90d3-ea430971fa7d"
   },
   {
     "nickname": "Lowkick",
     "email": "ivaasdada@example.com",
     "registrationDate": "2026-01-24T17:51:33.1462253",
-    "discountPercent": 5.0,
-    "visitCount": 12,
-    "balance": 1500.50,
+    "discountPercent": 5,
+    "visitCount": 16,
+    "balance": 1306.00,
     "id": "15d5e3c8-50ac-41d0-ba59-a7d1a8a32e03"
   },
   {

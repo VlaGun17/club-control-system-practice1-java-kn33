@@ -1,1 +1,9 @@
-[]
+[
+  {
+    "sessionId": "e4ec3d93-9ae1-419d-b5da-5b1e82149c18",
+    "amount": 5.70,
+    "paymentTime": "2026-01-28T15:23:39.0313686",
+    "paymentType": "CASH",
+    "id": "300e48e8-f152-42a6-a6c9-87c4c945e46b"
+  }
+]

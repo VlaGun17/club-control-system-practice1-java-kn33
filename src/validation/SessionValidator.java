@@ -121,7 +121,7 @@ public class SessionValidator implements Validator<Session> {
 
     private void validateTotalCost(BigDecimal totalCost, LocalDateTime endTime,
           Map<String, List<String>> errors) {
-        if (endTime == null && totalCost != null) {
+        if (endTime == null && !totalCost.equals(BigDecimal.ZERO)) {
             addError(errors, "totalCost",
                   "Вартість не може бути встановлена для активної сесії");
         }

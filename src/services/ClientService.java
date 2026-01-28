@@ -29,7 +29,7 @@ public class ClientService {
     }
 
 
-    public void createClient(String nickname, String email) {
+    public Client createClient(String nickname, String email) {
         Client newClient = new Client(nickname, email, BigDecimal.ZERO, 0, BigDecimal.ZERO,
               LocalDateTime.now());
 
@@ -39,9 +39,11 @@ public class ClientService {
             uow.registerNew(newClient);
             uow.commit();
             System.out.println("✓ Клієнта успішно створено.");
+            return newClient;
         } else {
             System.out.println("✗ Помилки валідації:");
             System.out.println(result.getErrorMessage());
+            return null;
         }
     }
 
@@ -107,7 +109,7 @@ public class ClientService {
         client.setVisitCount(newVisitCount);
         client.setDiscountPercent(newDiscount);
 
-        ValidationResult result = clientValidator.validate(client);
+        ValidationResult result = clientValidator.validateRegisterVisit(client);
 
         String message = "Візит зареєстровано. Всього відвідувань: " + newVisitCount;
         if (newDiscount.compareTo(client.getDiscountPercent()) > 0) {
@@ -161,6 +163,10 @@ public class ClientService {
 
     public Optional<Client> findByEmail(String email) {
         return clientRepository.findByEmail(email);
+    }
+
+    public List<Client> findByName(String name) {
+        return clientRepository.findByNameContaining(name);
     }
 
     public List<Client> getAllClients() {

@@ -61,6 +61,15 @@ public class ClientValidator implements Validator<Client> {
         return new ValidationResult(errors);
     }
 
+    public ValidationResult validateRegisterVisit(Client client) {
+        Map<String, List<String>> errors = new HashMap<>();
+
+        validateVisitCount(client.getVisitCount(), errors);
+        validateDiscountPercent(client.getDiscountPercent(), errors);
+
+        return new ValidationResult(errors);
+    }
+
     private void validateEmailUniqueness(Client entity,
           Map<String, List<String>> errors) {
         var existingClient = repository.findByEmail(entity.getEmail());

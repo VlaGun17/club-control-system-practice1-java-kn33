@@ -10,6 +10,7 @@ import java.math.BigDecimal;
 import java.util.Scanner;
 import models.entities.Client;
 import services.ClientService;
+import services.EmailService;
 
 public class ClientsMenu {
 
@@ -53,6 +54,7 @@ public class ClientsMenu {
     }
 
     private void createClient() {
+        EmailService emailService = new EmailService();
         clearScreen();
         printHeader("СТВОРИТИ КЛІЄНТА");
 
@@ -64,9 +66,11 @@ public class ClientsMenu {
         String nickname = readLine("Нікнейм: ");
         String email = readLine("Email: ");
 
-        clientService.createClient(nickname, email);
-        System.out.println();
-        pause();
+        if (clientService.createClient(nickname, email) != null) {
+            emailService.sendWelcomeEmailToClient(email, nickname);
+            System.out.println();
+            pause();
+        }
     }
 
     private void addBalance() {

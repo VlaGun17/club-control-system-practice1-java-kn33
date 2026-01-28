@@ -14,5 +14,13 @@
     "endHour": "22:00:00",
     "isNightTariff": false,
     "id": "f398f9b4-214c-4bb2-8ce7-62a3ec9cbf0e"
+  },
+  {
+    "name": "VIP",
+    "pricePerHour": 120,
+    "startHour": "00:00:00",
+    "endHour": "23:59:00",
+    "isNightTariff": false,
+    "id": "8c7e4294-cfa4-4d07-b922-5f69c20abaf2"
   }
 ]

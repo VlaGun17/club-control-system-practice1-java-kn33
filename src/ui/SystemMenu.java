@@ -8,14 +8,19 @@ import static ui.MainMenu.readLine;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.Scanner;
+import models.entities.Client;
 import models.entities.Computer;
 import models.entities.Session;
+import models.entities.Tariff;
 import models.enums.ComputerStatus;
 import models.enums.ComputerType;
+import services.ClientService;
 import services.ComputerService;
 import services.PaymentService;
 import services.SessionService;
+import services.TariffService;
 
 public class SystemMenu {
 
@@ -23,15 +28,21 @@ public class SystemMenu {
     private final ComputerService computerService;
     private final SessionService sessionService;
     private final PaymentService paymentService;
+    private final ClientService clientService;
+    private final TariffService tariffService;
 
     public SystemMenu(Scanner scanner,
           ComputerService computerService,
           SessionService sessionService,
-          PaymentService paymentService) {
+          PaymentService paymentService,
+          ClientService clientService,
+          TariffService tariffService) {
         this.scanner = scanner;
         this.computerService = computerService;
         this.sessionService = sessionService;
         this.paymentService = paymentService;
+        this.clientService = clientService;
+        this.tariffService = tariffService;
     }
 
     public void show() {
@@ -44,7 +55,8 @@ public class SystemMenu {
             System.out.println("4. Подивитись активні сесії");
             System.out.println("5. Подивитись збережені сесії за період");
             System.out.println("6. Примусове завершення сесії");
-            System.out.println("7. Подивитись статистику за період");
+            System.out.println("7. Розпочати сесію.");
+            System.out.println("8. Подивитись статистику за період");
             System.out.println("0. Назад");
             System.out.println();
 
@@ -57,7 +69,8 @@ public class SystemMenu {
                 case 4 -> viewActiveSessions();
                 case 5 -> viewSessionsByPeriod();
                 case 6 -> forceEndSession();
-                case 7 -> viewStatistics();
+                case 7 -> startSession();
+                case 8 -> viewStatistics();
                 case 0 -> {
                     return;
                 }
@@ -67,6 +80,82 @@ public class SystemMenu {
                 }
             }
         }
+    }
+
+    private void startSession() {
+        clearScreen();
+        printHeader("РОЗПОЧАТИ СЕСІЮ");
+
+        var computers = computerService.getAllComputers();
+        var activeSessions = sessionService.findActiveSessions();
+
+        var availableComputers = computers.stream()
+              .filter(c -> c.getComputerStatus() == ComputerStatus.FREE)
+              .toList();
+
+        if (availableComputers.isEmpty()) {
+            System.out.println("Немає доступних комп'ютерів.");
+            pause();
+            return;
+        }
+
+        System.out.println("Доступні комп'ютери:");
+        for (int i = 0; i < availableComputers.size(); i++) {
+            Computer c = availableComputers.get(i);
+            System.out.printf("%d. %s\n", i + 1, formatComputer(c));
+        }
+
+        System.out.println();
+        int computerChoice = readInt("Оберіть комп'ютер (0 - скасувати): ");
+
+        if (computerChoice < 1 || computerChoice > availableComputers.size()) {
+            System.out.println("Скасовано.");
+            pause();
+            return;
+        }
+
+        Computer selectedComputer = availableComputers.get(computerChoice - 1);
+
+        System.out.println();
+        String name = readLine("Введіть nickname користувача: ");
+
+        if (name.trim().isEmpty()) {
+            System.out.println("Скасовано.");
+            pause();
+        }
+
+        Client selectedClient = clientService.findByName(name).getFirst();
+
+        System.out.println();
+        List<Tariff> tariffs = tariffService.getAllTariffs();
+
+        for (int i = 0; i < tariffs.size(); i++) {
+            System.out.println((i + 1) + ". ");
+            printTariff(tariffs.get(i));
+        }
+
+        int tariffChoice = readInt("Оберіть номер тарифу: ");
+        Tariff selectedTariff = null;
+
+        if (tariffChoice > 0 && tariffChoice <= tariffs.size()) {
+            selectedTariff = tariffs.get(tariffChoice - 1);
+        } else {
+            System.out.println("Невірний вибір.");
+            pause();
+        }
+
+        System.out.println();
+        String confirm = readLine("Розпочати сесію? (yes/no): ");
+
+        if (!confirm.equalsIgnoreCase("yes")) {
+            System.out.println("Скасовано.");
+            pause();
+            return;
+        }
+
+        sessionService.startSession(selectedClient.getId(), selectedComputer.getId(),
+              selectedTariff.getId());
+        pause();
     }
 
     private void viewComputerHall() {
@@ -288,7 +377,7 @@ public class SystemMenu {
         }
 
         sessionService.endSession(selected.getId());
-        System.out.println("Сесію успішно завершено.");
+        System.out.println();
         pause();
     }
 
@@ -341,7 +430,20 @@ public class SystemMenu {
             System.out.println("Завершення: " + session.getEndTime().format(formatter));
             System.out.println("Вартість: " + session.getTotalCost() + " грн");
         } else {
-            System.out.println("Статус: АКТИВНА");
+            if (session.isActive()) {
+                System.out.println("Статус: АКТИВНА");
+            } else {
+                System.out.println("Статус: НЕАКТИВНА");
+            }
         }
+    }
+
+    private void printTariff(Tariff tariff) {
+        System.out.println("─".repeat(50));
+        System.out.println("Назва: " + tariff.getName());
+        System.out.println("Ціна: " + tariff.getPricePerHour() + " грн/год");
+        System.out.println("Час дії: " + tariff.getStartHour() + " - " + tariff.getEndHour());
+        System.out.println("Нічний: " + (tariff.isNightTariff() ? "Так" : "Ні"));
+        System.out.println("─".repeat(50));
     }
 }

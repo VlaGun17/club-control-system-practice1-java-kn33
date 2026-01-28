@@ -10,5 +10,11 @@
     "computerType": "VIP",
     "computerStatus": "FREE",
     "id": "be284b3b-6da0-4f3d-bf5d-a448da4a970f"
+  },
+  {
+    "number": 1,
+    "computerType": "STANDART",
+    "computerStatus": "FREE",
+    "id": "4caab72d-42be-4850-b97c-375ce2fc5f33"
   }
 ]

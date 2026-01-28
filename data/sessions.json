@@ -1,1 +1,22 @@
-[]
+[
+  {
+    "clientId": "15d5e3c8-50ac-41d0-ba59-a7d1a8a32e03",
+    "computerId": "932f7eb1-ea59-4fba-a69d-820b2ef820ea",
+    "tariffId": "f398f9b4-214c-4bb2-8ce7-62a3ec9cbf0e",
+    "startTime": "2026-01-28T15:05:17.4872887",
+    "totalCost": 1.42,
+    "endTime": "2026-01-28T15:05:33.7873065",
+    "isActive": false,
+    "id": "fc7a0b63-add6-44d2-81c2-3668492833eb"
+  },
+  {
+    "clientId": "15d5e3c8-50ac-41d0-ba59-a7d1a8a32e03",
+    "computerId": "be284b3b-6da0-4f3d-bf5d-a448da4a970f",
+    "tariffId": "8c7e4294-cfa4-4d07-b922-5f69c20abaf2",
+    "startTime": "2026-01-28T15:20:26.3641204",
+    "totalCost": 5.70,
+    "endTime": "2026-01-28T15:23:39.0193877",
+    "isActive": false,
+    "id": "e4ec3d93-9ae1-419d-b5da-5b1e82149c18"
+  }
+]

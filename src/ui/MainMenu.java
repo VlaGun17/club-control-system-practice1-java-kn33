@@ -39,7 +39,6 @@ public class MainMenu {
     public MainMenu() {
         this.scanner = new Scanner(System.in);
 
-        // Ініціалізація repositories
         AdminRepository adminRepo = new JsonAdminRepository("data/admins.json");
         ClientRepository clientRepo = new JsonClientRepository("data/clients.json");
         ComputerRepository computerRepo = new JsonComputerRepository("data/computers.json");
@@ -47,7 +46,6 @@ public class MainMenu {
         SessionRepository sessionRepo = new JsonSessionRepository("data/sessions.json");
         PaymentRepository paymentRepo = new JsonPaymentRepository("data/payments.json");
 
-        // Ініціалізація services
         PasswordHasher passwordHasher = new PasswordHasher();
         this.adminService = new AdminService(adminRepo, passwordHasher);
         this.authService = new AuthenticationService(adminRepo, passwordHasher);
@@ -57,7 +55,7 @@ public class MainMenu {
         this.paymentService = new PaymentService(paymentRepo);
         this.sessionService = new SessionService(
               sessionRepo, clientService, computerService, tariffService, clientRepo, computerRepo,
-              tariffRepo);
+              tariffRepo, paymentRepo);
     }
 
     public static void printHeader(String title) {
@@ -150,8 +148,8 @@ public class MainMenu {
 
     private void showSystemMenu() {
         SystemMenu menu = new SystemMenu(
-              scanner, computerService, sessionService, paymentService
-        );
+              scanner, computerService, sessionService, paymentService, clientService,
+              tariffService);
         menu.show();
     }
 
@@ -170,7 +168,6 @@ public class MainMenu {
               scanner, adminService, authService, currentAdmin
         );
 
-        // Якщо адмін видалив сам себе, виходимо
         if (!menu.show()) {
             System.out.println("Обліковий запис видалено. Вихід з системи...");
             currentAdmin = null;
